@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace e_commerce_app.Data
+﻿namespace e_commerce_app.Data
 {
     public enum MovieCategory
     {
@@ -8,13 +6,5 @@ namespace e_commerce_app.Data
         Comedy , 
         Drama , 
         Documentary 
-    }
-
-    public class AppDbContext :DbContext
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-
-        }
     }
 }
