@@ -6,12 +6,13 @@ namespace e_commerce_app.Models
     {
         [Key]
         public int ActorId { get; set; }  
-        public string ProfilePictureUrl { get; set; }
+        public string FullName { get; set; }
         public string Bio { get; set; }
+        public string ProfilePictureURL { get; set; }
 
         //Relationships
 
-        public List<Actor_Movies> Actor_Movies { get; set; }
+        public List<Actor_Movie> Actor_Movies { get; set; }
 
     }
 }

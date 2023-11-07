@@ -1,4 +1,4 @@
-﻿using e_commerce_app.Data;
+﻿using e_commerce_app.Data.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,18 +14,16 @@ namespace e_commerce_app.Models
         public DateTime StartDate { get; set; } 
         public DateTime EndDate { get; set; }
         public MovieCategory MovieCategory { get; set; }
+        public string ImageURL { get; set; }    
 
        // Relationship 
 
-        public List<Actor_Movies> Actor_Movies  { get; set; } 
+        public List<Actor_Movie> Actor_Movies  { get; set; } 
         
-        //cinema 
+        //Cinema 
         public int CinemaId { get; set; }
         [ForeignKey("CinemaId")]
         public Cinema Cinema { get; set; }
-
-
-
         public int ProducerId { get; set; }
         [ForeignKey("ProducerId")]
         public Producer Producer { get; set; }

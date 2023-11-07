@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_commerce_app.Data;
 
@@ -11,9 +12,11 @@ using e_commerce_app.Data;
 namespace e_commerce_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107074539_FixedActorName")]
+    partial class FixedActorName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace e_commerce_app.Migrations
                     b.ToTable("Actors");
                 });
 
-            modelBuilder.Entity("e_commerce_app.Models.Actor_Movie", b =>
+            modelBuilder.Entity("e_commerce_app.Models.Actor_Movies", b =>
                 {
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
@@ -59,7 +62,7 @@ namespace e_commerce_app.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Actors_Movies");
+                    b.ToTable("Actor_Movies");
                 });
 
             modelBuilder.Entity("e_commerce_app.Models.Cinema", b =>
@@ -105,10 +108,6 @@ namespace e_commerce_app.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("MovieCategory")
                         .HasColumnType("int");
 
@@ -150,7 +149,7 @@ namespace e_commerce_app.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfilePictureURL")
+                    b.Property<string>("ProfilePictureUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -159,7 +158,7 @@ namespace e_commerce_app.Migrations
                     b.ToTable("Producers");
                 });
 
-            modelBuilder.Entity("e_commerce_app.Models.Actor_Movie", b =>
+            modelBuilder.Entity("e_commerce_app.Models.Actor_Movies", b =>
                 {
                     b.HasOne("e_commerce_app.Models.Actor", "Actor")
                         .WithMany("Actor_Movies")
