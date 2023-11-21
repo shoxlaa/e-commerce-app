@@ -8,6 +8,7 @@ namespace e_commerce_app.Models
         public int ActorId { get; set; }  
         public string FullName { get; set; }
         public string Bio { get; set; }
+        [Display(Name  = "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
 
         //Relationships

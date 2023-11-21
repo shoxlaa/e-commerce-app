@@ -1,5 +1,6 @@
 ﻿using e_commerce_app.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_app.Controllers
 {
@@ -10,8 +11,9 @@ namespace e_commerce_app.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var data =  await _context.Producers.ToListAsync();
             return View();
         }
     }
