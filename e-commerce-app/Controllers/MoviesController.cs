@@ -13,7 +13,7 @@ namespace e_commerce_app.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _context.Movies.ToListAsync();
+            var data = await _context.Movies.Include(n=> n.Cinema).ToListAsync();
             return View(data);
         }
     }
