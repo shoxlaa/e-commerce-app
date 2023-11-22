@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model=> model.ProfilePictureURL)</th>
@@ -27,9 +27,16 @@
                             <img class="rounded-circle" src="@item.ProfilePictureURL"/>
                         </td>
                         <td class="align-middle">
-                            @Html.DisplayNameFor(model=> model.FullName)
+                            @Html.DisplayFor(modelItem=> item.FullName)
                         </td>
-                        <td></td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem=> item.Bio)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a>
+                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
+                            <a class="btn btn-outline-danger"><i class="bi bi-bucket"></i>Delete</a>
+                        </td>
                         <td></td>
                        
                     </tr>

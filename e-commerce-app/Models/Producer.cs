@@ -6,8 +6,11 @@ namespace e_commerce_app.Models
     {
         [Key]
         public int ProducerId { get; set;}
+        [Display (Name="Name")]
         public string FullName { get; set; }
-        public string Bio { get; set;} 
+        [Display (Name = "Biography")]
+        public string Bio { get; set;}
+        [Display (Name= "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
 
 

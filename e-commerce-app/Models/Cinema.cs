@@ -6,8 +6,12 @@ namespace e_commerce_app.Models
     {
         [Key]
         public int CinemaId { get; set; }
+
+        [Display (Name ="Poster")]
         public string Logo { get; set; }
+        [Display(Name="Cinema Name")]
         public string Name { get; set; }
+        [Display(Name="Description")]
         public string Description { get; set; }
 
         //Relotionshps 

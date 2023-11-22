@@ -14,7 +14,7 @@ namespace e_commerce_app.Controllers
         public IActionResult Index()
         {
             var data = _context.Actors.ToList();
-            return View();
+            return View(data);
         }
     }
 }
