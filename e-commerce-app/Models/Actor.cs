@@ -7,10 +7,16 @@ namespace e_commerce_app.Models
         [Key]
         public int ActorId { get; set; }
         [Display(Name= "Name")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Full Name must be between 3 and 50 chars")]
+
         public string FullName { get; set; }
-        [Display(Name = "Biography")] 
+
+        [Display(Name = "Biography")]
+        [Required(ErrorMessage ="Biography is required")]
         public string Bio { get; set; }
 
+        [Required(ErrorMessage ="Profile Picture is required ")]
         [Display(Name  = "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
 

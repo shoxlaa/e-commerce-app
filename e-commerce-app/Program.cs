@@ -1,4 +1,5 @@
 using e_commerce_app.Data;
+using e_commerce_app.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<AppDbContext>( options=>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });  
+
+builder.Services.AddScoped<IActorsService, ActorService>(); 
 
 var app = builder.Build();
 
