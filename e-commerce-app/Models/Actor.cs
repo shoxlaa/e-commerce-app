@@ -5,7 +5,7 @@ namespace e_commerce_app.Models
     public class Actor
     {
         [Key]
-        public int ActorId { get; set; }
+        public int? ActorId { get; set; }
         [Display(Name= "Name")]
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Full Name must be between 3 and 50 chars")]
@@ -22,7 +22,7 @@ namespace e_commerce_app.Models
 
         //Relationships
 
-        public List<Actor_Movie> Actor_Movies { get; set; }
+        public List<Actor_Movie>? Actor_Movies { get; set; }
 
     }
 }

@@ -16,5 +16,6 @@ namespace e_commerce_app.Controllers
             var data = await _context.Movies.Include(n=> n.Cinema).ToListAsync();
             return View(data);
         }
+        
     }
 }

@@ -5,11 +5,11 @@ namespace e_commerce_app.Data.Services
 {
     public interface IActorsService
     {
-        public  Task<IEnumerable<Actor>> GetAll();
-        public Actor GetById(int id);
-        public void Add(Actor actor);
-        public Actor Update(int id, Actor actor);
-        public void Delete(int id);
+        public  Task<IEnumerable<Actor>> GetAllAsync();
+        public Task<Actor> GetByIdAsync(int id);
+        public void AddAsync(Actor actor);
+        public  Task<Actor> UpdateAsync(int id, Actor actor);
+        public void DeleteAsync(int id);
     }
 
     public class ActorService : IActorsService
@@ -20,31 +20,34 @@ namespace e_commerce_app.Data.Services
         {
             _context = context;
         }
-        public void Add(Actor actor)
+        public void AddAsync(Actor actor)
         {
             _context.Actors.Add(actor);
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Actor>>GetAll()
+        public async Task<IEnumerable<Actor>>GetAllAsync()
         {
             return  await _context.Actors.ToListAsync();
               
         }
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(n => n.ActorId ==id);
+            return result;
         }
 
-        public Actor Update(int id, Actor actor)
+        public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            _context.Update(newActor); 
+            await _context.SaveChangesAsync();
+            return newActor;
         }
     }
 }

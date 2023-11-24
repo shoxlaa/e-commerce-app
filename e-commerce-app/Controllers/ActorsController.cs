@@ -14,7 +14,7 @@ namespace e_commerce_app.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
         //Get:Actors/Create
@@ -24,14 +24,50 @@ namespace e_commerce_app.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName,ProfilePrictureURL,Bio")] Actor actor)
-        { 
-            if(!ModelState.IsValid)
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("Not Found");
+            }
+            return View(acrtorDetails);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("Not Found");
+            }
+            return View(acrtorDetails);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id ,[Bind("Id,FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            _service.UpdateAsync(id,actor);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
