@@ -9,7 +9,7 @@ namespace e_commerce_app.Data.Services
         public Task<Actor> GetByIdAsync(int id);
         public void AddAsync(Actor actor);
         public  Task<Actor> UpdateAsync(int id, Actor actor);
-        public void DeleteAsync(int id);
+        public Task DeleteAsync(int id);
     }
 
     public class ActorService : IActorsService
@@ -26,9 +26,11 @@ namespace e_commerce_app.Data.Services
             _context.SaveChanges();
         }
 
-        public void DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await this.GetByIdAsync(id); 
+            _context.Actors.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>>GetAllAsync()
@@ -45,8 +47,15 @@ namespace e_commerce_app.Data.Services
 
         public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
-            _context.Update(newActor); 
-            await _context.SaveChangesAsync();
+           
+            var result =   _context.Actors.FirstOrDefault(n => n.ActorId ==id);
+
+            result.FullName=newActor.FullName;
+            result.ProfilePictureURL=newActor.ProfilePictureURL;
+            result.Bio= newActor.Bio;   
+
+           await  _context.SaveChangesAsync();
+        
             return newActor;
         }
     }

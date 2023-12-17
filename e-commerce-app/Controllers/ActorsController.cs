@@ -40,7 +40,7 @@ namespace e_commerce_app.Controllers
 
             if (acrtorDetails == null)
             {
-                return View("Not Found");
+                return View("NotFound");
             }
             return View(acrtorDetails);
         }
@@ -51,7 +51,7 @@ namespace e_commerce_app.Controllers
 
             if (acrtorDetails == null)
             {
-                return View("Not Found");
+                return View("NotFound");
             }
             return View(acrtorDetails);
 
@@ -64,10 +64,48 @@ namespace e_commerce_app.Controllers
             {
                 return View(actor);
             }
-            _service.UpdateAsync(id,actor);
+           await _service.UpdateAsync(id,actor);
             return RedirectToAction(nameof(Index));
         }
 
+        //[HttpPost, ActionName("Delete")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var acrtorDetails = await _service.GetByIdAsync(id);
+
+        //    if (acrtorDetails == null)
+        //    {
+        //        return View("Not Found");
+        //    } 
+        //    await  _service.DeleteAsync(id);   
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(acrtorDetails);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteComfirmed(int id)
+        {
+            var acrtorDetails= await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("NotFound");
+            }
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+           
+        }
 
     }
 }
