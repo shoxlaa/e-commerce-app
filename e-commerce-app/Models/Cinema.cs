@@ -5,7 +5,7 @@ namespace e_commerce_app.Models
     public class Cinema
     {
         [Key]
-        public int CinemaId { get; set; }
+        public int Id { get; set; }
 
         [Display (Name ="Poster")]
         public string Logo { get; set; }
