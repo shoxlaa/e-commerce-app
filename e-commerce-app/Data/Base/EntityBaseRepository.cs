@@ -21,9 +21,9 @@ namespace e_commerce_app.Data.Base
         public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id ==id);
-
             EntityEntry entityEntry = _context.Entry<T>(entity);
-            entityEntry.State= EntityState.Deleted;
+            entityEntry.State= EntityState.Deleted; 
+            await _context.SaveChangesAsync();  
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -41,7 +41,8 @@ namespace e_commerce_app.Data.Base
         public async Task UpdateAsync(int id, T value)
         {
             EntityEntry entityEntry = _context.Entry<T>(value);
-            entityEntry.State= EntityState.Modified;       
+            entityEntry.State= EntityState.Modified; 
+            await _context.SaveChangesAsync();
         }
     }
 }
