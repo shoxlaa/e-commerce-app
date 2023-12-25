@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using e_commerce_app.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace e_commerce_app.Models
 {
-    public class Actor
+    public class Actor :IEntityBase
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [Display(Name= "Name")]
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Full Name must be between 3 and 50 chars")]
