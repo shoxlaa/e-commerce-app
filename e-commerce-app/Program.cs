@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>( options=>
 });  
 
 builder.Services.AddScoped<IActorsService, ActorService>(); 
+builder.Services.AddScoped<IProducersService,ProducerService>();   
 
 var app = builder.Build();
 
