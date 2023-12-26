@@ -1,5 +1,6 @@
 ﻿using e_commerce_app.Data;
 using e_commerce_app.Data.Services;
+using e_commerce_app.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,21 @@ namespace e_commerce_app.Controllers
                 return View("NotFound");
             }
             return View(producerDetails);
+        }
+        public async Task<IActionResult> Create ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Producer actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            _service.AddAsync(actor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
