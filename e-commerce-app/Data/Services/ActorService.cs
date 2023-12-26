@@ -11,6 +11,5 @@ namespace e_commerce_app.Data.Services
         public ActorService(AppDbContext context): base(context) 
         {
         }
-       
     }
 }
