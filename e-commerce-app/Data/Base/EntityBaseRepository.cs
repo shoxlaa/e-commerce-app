@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace e_commerce_app.Data.Base
 {
+    //abstract class
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
         private readonly AppDbContext _context;
