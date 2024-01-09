@@ -17,7 +17,7 @@ namespace e_commerce_app.Models
 
         //Relotionshps 
 
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
     }
 
 
