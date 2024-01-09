@@ -35,7 +35,7 @@ namespace e_commerce_app.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async  Task<IActionResult> Edit (int id)
+        public async  Task<IActionResult> Edit(int id)
         {
           var editCinema =  await _context.GetByIdAsync(id); 
 
@@ -46,6 +46,7 @@ namespace e_commerce_app.Controllers
             return View (editCinema);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Logo,Name,Description")] Cinema cinema)
         {
             if (!ModelState.IsValid) 
@@ -54,9 +55,17 @@ namespace e_commerce_app.Controllers
             }
             await _context.UpdateAsync(id,cinema);
             return RedirectToAction(nameof(Index));
-
         }
 
-        
+        public async Task<IActionResult> Details(int id)
+        {
+            var cinemaDetails = await _context.GetByIdAsync(id);
+
+            if (cinemaDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(cinemaDetails);
+        }
     }
 }
