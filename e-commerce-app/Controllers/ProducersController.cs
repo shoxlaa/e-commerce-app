@@ -44,5 +44,28 @@ namespace e_commerce_app.Controllers
             _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(acrtorDetails);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Producer actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
