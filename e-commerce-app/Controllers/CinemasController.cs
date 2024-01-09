@@ -35,5 +35,28 @@ namespace e_commerce_app.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async  Task<IActionResult> Edit (int id)
+        {
+          var editCinema =  await _context.GetByIdAsync(id); 
+
+            if(editCinema == null) 
+            {
+                return View("NotFound");
+            }
+            return View (editCinema);
+        }
+
+        public async Task<IActionResult> Edit(int id, [Bind("Logo,Name,Description")] Cinema cinema)
+        {
+            if (!ModelState.IsValid) 
+            {
+                return View();
+            }
+            await _context.UpdateAsync(id,cinema);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        
     }
 }
