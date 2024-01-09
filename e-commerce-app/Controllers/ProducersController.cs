@@ -29,7 +29,7 @@ namespace e_commerce_app.Controllers
             }
             return View(producerDetails);
         }
-        public async Task<IActionResult> Create ()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -65,6 +65,31 @@ namespace e_commerce_app.Controllers
                 return View(actor);
             }
             await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(acrtorDetails);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteComfirmed(int id)
+        {
+            var acrtorDetails = await _service.GetByIdAsync(id);
+
+            if (acrtorDetails == null)
+            {
+                return View("NotFound");
+            }
+
+            await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }
